@@ -1,0 +1,18 @@
+{
+  "AlarmName": "HighCPUUtilization",
+  "ComparisonOperator": "GreaterThanThreshold",
+  "EvaluationPeriods": 2,
+  "MetricName": "CPUUtilization",
+  "Namespace": "AWS/EC2",
+  "Period": 300,
+  "Statistic": "Average",
+  "Threshold": 80,
+  "ActionsEnabled": true,
+  "AlarmDescription": "Triggers an alert when EC2 CPU usage exceeds threshold",
+  "Dimensions": [
+    {
+      "Name": "InstanceId",
+      "Value": "i-xxxxxxxxxxxxxxxxx"
+    }
+  ]
+}
