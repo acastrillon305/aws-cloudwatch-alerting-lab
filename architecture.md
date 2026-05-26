@@ -1,18 +1,12 @@
-# Architecture Overview
+#!/bin/bash
 
-This lab represents a basic AWS alerting workflow.
-
-## Flow
-
-1. EC2 instance emits metrics to CloudWatch
-2. CloudWatch Alarm evaluates the metric threshold
-3. Alarm changes state when the threshold is breached
-4. SNS topic sends notification to the operations team
-
-## Example Alert
-
-High CPU utilization on an EC2 instance triggers an alert when average CPU usage exceeds 80% for two evaluation periods.
-
-## Why This Matters
-
-Monitoring and alerting help cloud teams detect issues early, reduce downtime, and improve incident response.
+aws cloudwatch put-metric-alarm \
+  --alarm-name HighCPUUtilization \
+  --metric-name CPUUtilization \
+  --namespace AWS/EC2 \
+  --statistic Average \
+  --period 300 \
+  --threshold 80 \
+  --comparison-operator GreaterThanThreshold \
+  --evaluation-periods 2 \
+  --alarm-actions arn:aws:sns:us-east-1:123456789012:OpsAlerts
